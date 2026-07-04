@@ -36,14 +36,15 @@ function applyTheme(vars: Record<string, string>) {
 }
 
 export default function ThemeToggle() {
-  const [isLight, setIsLight] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      localStorage.getItem("theme") === "light",
-  );
+  const [mounted, setMounted] = useState(false);
+  const [isLight, setIsLight] = useState(false);
 
   useEffect(() => {
-    applyTheme(isLight ? lightVars : darkVars);
+    const stored = localStorage.getItem("theme");
+    const light = stored === "light";
+    setIsLight(light);
+    applyTheme(light ? lightVars : darkVars);
+    setMounted(true);
   }, []);
 
   const toggle = () => {
@@ -57,6 +58,18 @@ export default function ThemeToggle() {
       localStorage.setItem("theme", "dark");
     }
   };
+
+  // Don't render icon until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <button
+        className="rounded-lg p-2.5 text-muted transition-colors hover:bg-surface hover:text-text"
+        aria-label="Toggle theme"
+      >
+        <div className="h-5 w-5" />
+      </button>
+    );
+  }
 
   return (
     <button

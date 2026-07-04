@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import profile from "../../data/profile";
 import Link from "next/link";
 
 const navLinks = [
   { href: "/#home", label: "Home" },
   { href: "/#projects", label: "Projects" },
+  { href: "/#tech-stack", label: "Stack" },
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -19,7 +21,7 @@ export default function Navbar() {
 
   /* ── Track which section is in view ── */
   useEffect(() => {
-    const ids = ["home", "projects", "about", "contact"];
+    const ids = ["home", "projects", "tech-stack", "about", "contact"];
     const observers: IntersectionObserver[] = [];
 
     ids.forEach((id) => {
@@ -40,21 +42,52 @@ export default function Navbar() {
   }, []);
 
   /* ── Smooth-scroll to section ── */
+  const NAVBAR_HEIGHT = 80;
+
+  const smoothScrollTo = useCallback((targetY: number) => {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    const duration = 800;
+    const startTime = performance.now();
+
+    function easeInOutCubic(time: number) {
+      return time < 0.5
+        ? 4 * time * time * time
+        : 1 - Math.pow(-2 * time + 2, 3) / 2;
+    }
+
+    function step(currentTime: number) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
+      window.scrollTo(0, startY + distance * eased);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }, []);
+
   const scrollTo = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-      // Only intercept hash links on the home page
       if (!href.startsWith("/#")) return;
 
       e.preventDefault();
       const id = href.replace("/#", "");
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+        const rect = el.getBoundingClientRect();
+        const targetY = window.scrollY + rect.top - NAVBAR_HEIGHT;
+        smoothScrollTo(targetY);
         setActiveSection(id);
+      } else {
+        // Element not on this page — navigate to home
+        window.location.href = href;
       }
       closeMobile();
     },
-    [],
+    [smoothScrollTo],
   );
 
   return (
@@ -110,7 +143,7 @@ export default function Navbar() {
             <span className="h-6 w-px bg-border" />
             <ThemeToggle />
             <a
-              href="/resume.pdf"
+              href={profile.resumeUrl}
               download
               className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
             >
@@ -136,7 +169,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 sm:hidden">
             <ThemeToggle />
             <a
-              href="/resume.pdf"
+              href={profile.resumeUrl}
               download
               className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-primary-hover"
             >

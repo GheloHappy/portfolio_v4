@@ -1,11 +1,44 @@
 "use client";
 
 import Link from "next/link";
+import profile from "../../data/profile";
 
 export default function HeroActions() {
+  const NAVBAR_HEIGHT = 80;
+
+  const smoothScrollTo = (targetY: number) => {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    const duration = 800;
+    const startTime = performance.now();
+
+    function easeInOutCubic(time: number) {
+      return time < 0.5
+        ? 4 * time * time * time
+        : 1 - Math.pow(-2 * time + 2, 3) / 2;
+    }
+
+    function step(currentTime: number) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
+      window.scrollTo(0, startY + distance * eased);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+
+    requestAnimationFrame(step);
+  };
+
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById(id);
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      const targetY = window.scrollY + rect.top - NAVBAR_HEIGHT;
+      smoothScrollTo(targetY);
+    }
   };
 
   return (
@@ -15,7 +48,7 @@ export default function HeroActions() {
         <Link
           href="/#projects"
           onClick={scrollTo("projects")}
-          className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
+          className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover sm:px-6 sm:py-3"
         >
           View my projects
           <svg
@@ -36,7 +69,7 @@ export default function HeroActions() {
         <Link
           href="/#contact"
           onClick={scrollTo("contact")}
-          className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-6 py-3 text-sm font-semibold text-text transition-colors hover:border-primary/50 hover:text-primary"
+          className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-text transition-colors hover:border-primary/50 hover:text-primary sm:px-6 sm:py-3"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +91,7 @@ export default function HeroActions() {
       {/* Social links */}
       <div className="animate-fade-in delay-5 mt-6 flex items-center gap-3">
         <a
-          href="https://github.com/GheloHappy"
+          href={profile.github}
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-lg p-2.5 text-muted transition-colors hover:bg-surface hover:text-text"
@@ -75,7 +108,7 @@ export default function HeroActions() {
         </a>
 
         <a
-          href="https://www.linkedin.com/in/ghelonico-maligaya-52a3bb204/"
+          href={profile.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-lg p-2.5 text-muted transition-colors hover:bg-surface hover:text-text"
