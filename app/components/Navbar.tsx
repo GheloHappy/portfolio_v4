@@ -1,25 +1,61 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import Link from "next/link";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#home", label: "Home" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("home");
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
-
   const closeMobile = () => setMobileOpen(false);
+
+  /* ── Track which section is in view ── */
+  useEffect(() => {
+    const ids = ["home", "projects", "about", "contact"];
+    const observers: IntersectionObserver[] = [];
+
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: "-40% 0px -55% 0px" },
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  /* ── Smooth-scroll to section ── */
+  const scrollTo = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      // Only intercept hash links on the home page
+      if (!href.startsWith("/#")) return;
+
+      e.preventDefault();
+      const id = href.replace("/#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        setActiveSection(id);
+      }
+      closeMobile();
+    },
+    [],
+  );
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
@@ -27,37 +63,44 @@ export default function Navbar() {
         {/* Left: Logo */}
         <div className="flex flex-1 justify-start">
           <Link
-            href="/"
+            href="/#home"
+            onClick={(e) => scrollTo(e, "/#home")}
             className="flex items-center gap-2 text-xl font-bold tracking-tight text-text transition-colors hover:text-primary sm:text-2xl"
           >
             <span className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-primary text-xl font-bold text-primary sm:h-12 sm:w-12 sm:text-2xl">
               G
             </span>
-            Ghelonico Maligaya
+            <span className="hidden sm:inline">Ghelonico Maligaya</span>
           </Link>
         </div>
 
         {/* Center: Desktop Navigation */}
         <ul className="hidden items-center gap-2 sm:flex">
-          {navLinks.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className={`rounded-lg px-4 py-2.5 text-base font-medium transition-colors ${
-                  isActive(href)
-                    ? "text-primary"
-                    : "text-muted hover:bg-surface hover:text-text"
-                }`}
-              >
-                <span className="relative">
-                  {label}
-                  {isActive(href) && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-primary" />
-                  )}
-                </span>
-              </Link>
-            </li>
-          ))}
+          {navLinks.map(({ href, label }) => {
+            const id = href.replace("/#", "");
+            const isActive = activeSection === id;
+
+            return (
+              <li key={href}>
+                <a
+                  href={href}
+                  onClick={(e) => scrollTo(e, href)}
+                  className={`rounded-lg px-4 py-2.5 font-mono text-base font-medium tracking-tight transition-colors ${
+                    isActive
+                      ? "text-primary"
+                      : "text-muted hover:bg-surface hover:text-text"
+                  }`}
+                >
+                  <span className="relative">
+                    {label}
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-primary" />
+                    )}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Right: Actions */}
@@ -143,21 +186,26 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="border-t border-border bg-background sm:hidden">
           <ul className="flex flex-col gap-1 px-6 pb-6 pt-3">
-            {navLinks.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  onClick={closeMobile}
-                  className={`block rounded-lg px-4 py-3 text-base font-medium transition-colors ${
-                    isActive(href)
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted hover:bg-surface hover:text-text"
-                  }`}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map(({ href, label }) => {
+              const id = href.replace("/#", "");
+              const isActive = activeSection === id;
+
+              return (
+                <li key={href}>
+                  <a
+                    href={href}
+                    onClick={(e) => scrollTo(e, href)}
+                    className={`block rounded-lg px-4 py-3 font-mono text-base font-medium tracking-tight transition-colors ${
+                      isActive
+                        ? "bg-primary/10 text-primary"
+                        : "text-muted hover:bg-surface hover:text-text"
+                    }`}
+                  >
+                    {label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

@@ -22,37 +22,35 @@ Custom colors defined in `app/globals.css` via `@theme inline`:
 | `bg-blue` / `text-blue` | `#3B82F6` | `#3B82F6` |
 | `bg-success` / `text-success` | `#22C55E` | `#22C55E` |
 
-Dark mode is the default (`:root`). Light mode is toggled via the `.light` class on `<html>` (`:root.light` overrides the CSS variables).
+Dark mode is the default (`:root`). Light mode toggles via JS inline styles (setProperty) on `<html>`, persisted in `localStorage('theme')`.
 
 ## Navbar (`app/components/Navbar.tsx`)
 
 - Sticky header with backdrop blur
 - Logo on the left, nav links centered, actions (theme toggle + resume download) on the right
+- Active section is detected via `IntersectionObserver` with a 40%/55% root margin
+- Clicking a nav link calls `scrollIntoView({ behavior: 'smooth' })`
 - Active link has a text-width underline bar
 - Mobile: hamburger menu with animated X toggle, stacked vertical links, compact resume button
-- Uses `next/link` for SPA navigation and `usePathname()` for active link detection
+- Uses native `<a>` tags with fragment URLs (`/#about`, `/#projects`, `/#contact`)
 
 ## Dark/Light Mode
 
 - `app/components/ThemeToggle.tsx` — sun/moon toggle button
+- Color variables are set as inline styles on `<html>` via `style.setProperty()`
 - Persists preference in `localStorage('theme')`
-- Flash-prevention inline script in `app/layout.tsx` applies the saved class before React hydrates
+- Flash-prevention inline script in `app/layout.tsx` applies before React hydrates
 
-## Adding New Pages
+## Single-Page Layout
 
-Create a folder under `app/` with a `page.tsx`:
+The portfolio is a single page (`app/page.tsx`) with scrollable sections:
 
-```
-app/
-├── about/
-│   └── page.tsx
-├── projects/
-│   └── page.tsx
-├── contact/
-│   └── page.tsx
-```
+- **Hero** (`#home`) — full-viewport left/right split
+- **About** (`#about`) — centered bio
+- **Projects** (`#projects`) — responsive card grid
+- **Contact** (`#contact`) — email + GitHub links
 
-Then add the route to the `navLinks` array in `app/components/Navbar.tsx`.
+Each section uses `scroll-mt-20` to offset for the sticky navbar height.
 
 ## Resume Download
 

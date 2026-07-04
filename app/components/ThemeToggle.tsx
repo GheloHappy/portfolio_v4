@@ -1,27 +1,60 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+
+const darkVars = {
+  "--background": "#09090B",
+  "--foreground": "#171717",
+  "--surface": "#111113",
+  "--border": "#27272A",
+  "--text": "#FAFAFA",
+  "--muted": "#A1A1AA",
+  "--primary": "#8B5CF6",
+  "--primary-hover": "#7C3AED",
+  "--blue": "#3B82F6",
+  "--success": "#22C55E",
+} as const;
+
+const lightVars = {
+  "--background": "#FFFFFF",
+  "--foreground": "#18181B",
+  "--surface": "#F4F4F5",
+  "--border": "#E4E4E7",
+  "--text": "#09090B",
+  "--muted": "#71717A",
+  "--primary": "#8B5CF6",
+  "--primary-hover": "#7C3AED",
+  "--blue": "#3B82F6",
+  "--success": "#22C55E",
+} as const;
+
+function applyTheme(vars: Record<string, string>) {
+  const root = document.documentElement;
+  for (const [key, value] of Object.entries(vars)) {
+    root.style.setProperty(key, value);
+  }
+}
 
 export default function ThemeToggle() {
-  const [isLight, setIsLight] = useState(false);
+  const [isLight, setIsLight] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      localStorage.getItem("theme") === "light",
+  );
 
   useEffect(() => {
-    const stored = localStorage.getItem('theme');
-    if (stored === 'light') {
-      setIsLight(true);
-      document.documentElement.classList.add('light');
-    }
+    applyTheme(isLight ? lightVars : darkVars);
   }, []);
 
   const toggle = () => {
     const next = !isLight;
     setIsLight(next);
     if (next) {
-      document.documentElement.classList.add('light');
-      localStorage.setItem('theme', 'light');
+      applyTheme(lightVars);
+      localStorage.setItem("theme", "light");
     } else {
-      document.documentElement.classList.remove('light');
-      localStorage.setItem('theme', 'dark');
+      applyTheme(darkVars);
+      localStorage.setItem("theme", "dark");
     }
   };
 
@@ -29,10 +62,9 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       className="rounded-lg p-2.5 text-muted transition-colors hover:bg-surface hover:text-text"
-      aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
+      aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
     >
       {isLight ? (
-        /* Moon icon for light mode → switch to dark */
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -46,7 +78,6 @@ export default function ThemeToggle() {
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
       ) : (
-        /* Sun icon for dark mode → switch to light */
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
