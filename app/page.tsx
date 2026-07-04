@@ -37,12 +37,12 @@ export default function Home() {
 
           <h1 className="animate-fade-in-up delay-2 mt-6 text-3xl font-bold leading-tight text-text sm:text-4xl lg:text-5xl xl:text-6xl">
             I build scalable{" "}
-            <span className="text-primary">web and mobile</span> applications
-            that deliver real business value.
+            <span className="text-primary">web, desktop and mobile</span>{" "}
+            applications that deliver real business value.
           </h1>
 
           <p className="animate-fade-in-up delay-3 mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            I specialize in building custom software solutions that simplify
+            Specializing in building custom software solutions that simplify
             complex business processes, improve productivity, and support
             long-term growth.
           </p>
@@ -109,17 +109,18 @@ export default function Home() {
                   <span className="text-green-400">&quot;6+ years&quot;</span>
                 </div>
                 <div>
-                  <span className="text-purple-400">&quot;stack&quot;</span>{" "}
+                  <span className="text-purple-400">&quot;expertise&quot;</span>{" "}
                   <span className="text-muted">:</span>{" "}
                   <span className="text-green-400">[</span>
                 </div>
                 <div className="pl-4 text-green-400">
-                  &quot;React&quot;, &quot;Node.js&quot;, &quot;React
-                  Native&quot;,
+                  &quot;Full Stack Web&quot;,
                 </div>
                 <div className="pl-4 text-green-400">
-                  &quot;Next.js&quot;, &quot;TypeScript&quot;,
-                  &quot;PostgreSQL&quot;
+                  &quot;Mobile Apps&quot;,
+                </div>
+                <div className="pl-4 text-green-400">
+                  &quot;System Architecture&quot;
                 </div>
                 <div>
                   <span className="text-green-400">]</span>

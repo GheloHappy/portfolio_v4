@@ -3,29 +3,29 @@
 import { useEffect, useState } from "react";
 
 const darkVars = {
-  "--background": "#09090B",
-  "--foreground": "#171717",
-  "--surface": "#111113",
-  "--border": "#27272A",
-  "--text": "#FAFAFA",
-  "--muted": "#A1A1AA",
-  "--primary": "#8B5CF6",
-  "--primary-hover": "#7C3AED",
-  "--blue": "#3B82F6",
-  "--success": "#22C55E",
+  "--background": "#0A0A0F",
+  "--foreground": "#E4E4EC",
+  "--surface": "#13131A",
+  "--border": "#2A2A35",
+  "--text": "#E4E4EC",
+  "--muted": "#8B8BA0",
+  "--primary": "#A78BFA",
+  "--primary-hover": "#8B5CF6",
+  "--blue": "#60A5FA",
+  "--success": "#34D399",
 } as const;
 
 const lightVars = {
   "--background": "#FFFFFF",
-  "--foreground": "#18181B",
-  "--surface": "#F4F4F5",
-  "--border": "#E4E4E7",
-  "--text": "#09090B",
-  "--muted": "#71717A",
-  "--primary": "#8B5CF6",
-  "--primary-hover": "#7C3AED",
+  "--foreground": "#0F172A",
+  "--surface": "#F0F2F5",
+  "--border": "#D1D5DB",
+  "--text": "#0F172A",
+  "--muted": "#6B7280",
+  "--primary": "#7C3AED",
+  "--primary-hover": "#6D28D9",
   "--blue": "#3B82F6",
-  "--success": "#22C55E",
+  "--success": "#10B981",
 } as const;
 
 function applyTheme(vars: Record<string, string>) {

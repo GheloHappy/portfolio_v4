@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 :root {
-    --background: #09090b;
-    --foreground: #171717;
-    --surface: #111113;
-    --border: #27272a;
-    --text: #fafafa;
-    --muted: #a1a1aa;
-    --primary: #8b5cf6;
-    --primary-hover: #7c3aed;
-    --blue: #3b82f6;
-    --success: #22c55e;
+    --background: #0a0a0f;
+    --foreground: #e4e4ec;
+    --surface: #13131a;
+    --border: #2a2a35;
+    --text: #e4e4ec;
+    --muted: #8b8ba0;
+    --primary: #a78bfa;
+    --primary-hover: #8b5cf6;
+    --blue: #60a5fa;
+    --success: #34d399;
 }
 
 :root.light {
     --background: #ffffff;
-    --foreground: #18181b;
-    --surface: #f4f4f5;
-    --border: #e4e4e7;
-    --text: #09090b;
-    --muted: #71717a;
-    --primary: #8b5cf6;
-    --primary-hover: #7c3aed;
+    --foreground: #0f172a;
+    --surface: #f0f2f5;
+    --border: #d1d5db;
+    --text: #0f172a;
+    --muted: #6b7280;
+    --primary: #7c3aed;
+    --primary-hover: #6d28d9;
     --blue: #3b82f6;
-    --success: #22c55e;
+    --success: #10b981;
 }
 
 @theme inline {
@@ -43,12 +43,17 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
     scroll-padding-top: 5rem;
 }
 
-section[id] {
-    scroll-snap-align: start;
+@media (width >= 640px) {
+    html {
+        scroll-snap-type: y mandatory;
+    }
+
+    section[id] {
+        scroll-snap-align: start;
+    }
 }
 
 body {
