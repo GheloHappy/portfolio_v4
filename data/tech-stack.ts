@@ -19,6 +19,7 @@ const techCategories: TechCategory[] = [
       "Next.js",
       "Node.js",
       "NestJS",
+      "Express.js",
       "Tailwind CSS",
       "Laravel",
     ],
@@ -41,6 +42,9 @@ const techCategories: TechCategory[] = [
       "Android Studio",
       "Vercel",
       "AWS",
+      "KILO ai",
+      "Claude",
+      "Openhands AI",
     ],
   },
 ];

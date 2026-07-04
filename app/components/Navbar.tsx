@@ -144,7 +144,8 @@ export default function Navbar() {
             <ThemeToggle />
             <a
               href={profile.resumeUrl}
-              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
             >
               <svg
@@ -161,7 +162,7 @@ export default function Navbar() {
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              Resume
+              CV
             </a>
           </div>
 
@@ -170,7 +171,8 @@ export default function Navbar() {
             <ThemeToggle />
             <a
               href={profile.resumeUrl}
-              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-primary-hover"
             >
               <svg
@@ -187,7 +189,7 @@ export default function Navbar() {
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              Resume
+              CV
             </a>
             <button
               onClick={() => setMobileOpen((prev) => !prev)}

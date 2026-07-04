@@ -8,6 +8,7 @@ import {
   SiNextdotjs,
   SiNodedotjs,
   SiNestjs,
+  SiExpress,
   SiTailwindcss,
   SiLaravel,
   SiPostgresql,
@@ -24,6 +25,7 @@ import {
   SiVercel,
 } from "react-icons/si";
 import { DiJava, DiAws, DiMsqlServer, DiDatabase } from "react-icons/di";
+import { FaRobot, FaBrain } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
 const iconMap: Record<string, { icon: IconType; className: string }> = {
@@ -39,6 +41,9 @@ const iconMap: Record<string, { icon: IconType; className: string }> = {
   "Next.js": { icon: SiNextdotjs, className: "text-text" },
   "Node.js": { icon: SiNodedotjs, className: "text-green-500" },
   NestJS: { icon: SiNestjs, className: "text-red-500" },
+  NestJs: { icon: SiNestjs, className: "text-red-500" },
+  "Express.js": { icon: SiExpress, className: "text-gray-500" },
+  Express: { icon: SiExpress, className: "text-gray-500" },
   "Tailwind CSS": { icon: SiTailwindcss, className: "text-cyan-500" },
   Laravel: { icon: SiLaravel, className: "text-red-500" },
   PostgreSQL: { icon: SiPostgresql, className: "text-blue-500" },
@@ -55,6 +60,9 @@ const iconMap: Record<string, { icon: IconType; className: string }> = {
   "Android Studio": { icon: SiAndroidstudio, className: "text-green-500" },
   Vercel: { icon: SiVercel, className: "text-text" },
   AWS: { icon: DiAws, className: "text-amber-500" },
+  "KILO ai": { icon: FaBrain, className: "text-purple-400" },
+  Claude: { icon: FaRobot, className: "text-orange-400" },
+  "Openhands AI": { icon: FaRobot, className: "text-cyan-400" },
 };
 
 export default function TechIcon({ name }: { name: string }) {

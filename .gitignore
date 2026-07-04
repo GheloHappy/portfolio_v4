@@ -44,3 +44,7 @@ next-env.d.ts
 *.apk
 *.ipa
 *.aab
+
+# project images (hosted on R2)
+public/projects/*/images/
+public/projects/.gitkeep
