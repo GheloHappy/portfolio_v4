@@ -53,6 +53,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="icon" href="/happy.webp" type="image/webp" />
         <Script
           id="theme-init"
           strategy="beforeInteractive"
