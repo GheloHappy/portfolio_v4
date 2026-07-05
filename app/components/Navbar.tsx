@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 import profile from "../../data/profile";
-import Link from "next/link";
 
 const navLinks = [
   { href: "/#home", label: "Home" },
@@ -95,7 +94,7 @@ export default function Navbar() {
       <nav className="mx-auto flex h-20 w-full max-w-7xl items-center px-2">
         {/* Left: Logo */}
         <div className="flex flex-1 justify-start">
-          <Link
+          <a
             href="/#home"
             onClick={(e) => scrollTo(e, "/#home")}
             className="flex items-center gap-2 text-xl font-bold tracking-tight text-text transition-colors hover:text-primary sm:text-2xl"
@@ -104,7 +103,7 @@ export default function Navbar() {
               G
             </span>
             <span className="hidden sm:inline">Ghelonico Maligaya</span>
-          </Link>
+          </a>
         </div>
 
         {/* Center: Desktop Navigation */}
@@ -162,7 +161,7 @@ export default function Navbar() {
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              CV
+              Resume
             </a>
           </div>
 
@@ -189,7 +188,7 @@ export default function Navbar() {
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              CV
+              Resume
             </a>
             <button
               onClick={() => setMobileOpen((prev) => !prev)}
