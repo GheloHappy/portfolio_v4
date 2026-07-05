@@ -1,4 +1,4 @@
-import { img } from "../lib/constants";
+import { img, R2_BASE } from "../lib/constants";
 
 export interface Project {
   title: string;
@@ -46,7 +46,7 @@ const allProjects: Project[] = [
       img("/projects/tyew/images/5.jpg"),
     ],
     link: "",
-    apk: "#",
+    apk: `${R2_BASE}/projects/tyew/apk/tyew.apk`,
   },
   {
     title: "Barcode System V3",

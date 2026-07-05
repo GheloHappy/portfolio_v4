@@ -1,4 +1,4 @@
-import { R2_PUBLIC } from "../lib/constants";
+import { R2_BASE } from "../lib/constants";
 
 export interface Profile {
   name: string;
@@ -27,7 +27,7 @@ const profile: Profile = {
     "Specializing in building custom software solutions that simplify complex business processes, improve productivity, and support long-term growth.",
   github: "https://github.com/GheloHappy",
   linkedin: "https://www.linkedin.com/in/ghelonico-maligaya-52a3bb204/",
-  resumeUrl: `${R2_PUBLIC}/Maligaya-Ghelonico-G.-CV.pdf`,
+  resumeUrl: `${R2_BASE}/Maligaya-Ghelonico-G.-CV.pdf`,
 };
 
 export default profile;
