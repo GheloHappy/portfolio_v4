@@ -43,7 +43,6 @@ const iconMap: Record<string, { icon: IconType; className: string }> = {
   NestJS: { icon: SiNestjs, className: "text-red-500" },
   NestJs: { icon: SiNestjs, className: "text-red-500" },
   "Express.js": { icon: SiExpress, className: "text-gray-500" },
-  Express: { icon: SiExpress, className: "text-gray-500" },
   "Tailwind CSS": { icon: SiTailwindcss, className: "text-cyan-500" },
   Laravel: { icon: SiLaravel, className: "text-red-500" },
   PostgreSQL: { icon: SiPostgresql, className: "text-blue-500" },

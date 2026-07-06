@@ -7,7 +7,7 @@ export interface Project {
   image: string | null;
   images: string[];
   link: string;
-  apk: string | null;
+  apk?: string;
 }
 
 const allProjects: Project[] = [
@@ -30,7 +30,6 @@ const allProjects: Project[] = [
       img("/projects/happy-snippets/images/3.png"),
     ],
     link: "https://happy-snippet.ghelonico.site",
-    apk: null,
   },
   {
     title: "TYEW (Track Your Empty Wallet)",
@@ -46,7 +45,7 @@ const allProjects: Project[] = [
       img("/projects/tyew/images/5.jpg"),
     ],
     link: "",
-    apk: `${R2_BASE}/projects/tyew/apk/tyew.apk`,
+    apk: "/api/download-apk/tyew",
   },
   {
     title: "Barcode System V3",
@@ -62,7 +61,6 @@ const allProjects: Project[] = [
       img("/projects/barcode-system/images/5.jpg"),
     ],
     link: "",
-    apk: null,
   },
   {
     title: "SARIKart",
@@ -77,7 +75,6 @@ const allProjects: Project[] = [
       img("/projects/sarikart/images/4.png"),
     ],
     link: "https://sarikart.monheim.app",
-    apk: null,
   },
   {
     title: "CMDI Ordering System",
@@ -92,7 +89,6 @@ const allProjects: Project[] = [
       img("/projects/cmdi-ordering/images/4.jpg"),
     ],
     link: "",
-    apk: null,
   },
   {
     title: "Online Timekeeping Monitoring",
@@ -106,7 +102,6 @@ const allProjects: Project[] = [
       img("/projects/timekeeping/images/3.png"),
     ],
     link: "https://timekeeping.monheim.app",
-    apk: null,
   },
   {
     title: "Van Sales",
@@ -116,7 +111,6 @@ const allProjects: Project[] = [
     image: null,
     images: [],
     link: "",
-    apk: null,
   },
   {
     title: "MLDI Ordering System",
@@ -126,7 +120,6 @@ const allProjects: Project[] = [
     image: null,
     images: [],
     link: "",
-    apk: null,
   },
   {
     title: "Timekeeping",
@@ -140,7 +133,6 @@ const allProjects: Project[] = [
       img("/projects/timekeeping/images/3.png"),
     ],
     link: "",
-    apk: null,
   },
   {
     title: "Warehouse Delivery Schedule",
@@ -150,7 +142,6 @@ const allProjects: Project[] = [
     image: null,
     images: [],
     link: "",
-    apk: null,
   },
   {
     title: "B2B Converter",
@@ -160,7 +151,6 @@ const allProjects: Project[] = [
     image: null,
     images: [],
     link: "",
-    apk: null,
   },
 ];
 
