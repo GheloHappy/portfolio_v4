@@ -104,7 +104,7 @@ export default function FeaturedProjects() {
                 {project.apk && (
                   <a
                     href={project.apk}
-                    download
+                    download="tyew.apk"
                     className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-1 text-[10px] font-medium text-primary transition-colors hover:bg-primary/20 sm:text-xs"
                     onClick={(e) => e.stopPropagation()}
                   >
