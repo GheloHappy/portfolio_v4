@@ -108,7 +108,7 @@ const allProjects: Project[] = [
     description:
       "A Sales Force Automation (SFA) app developed to facilitate paperless sales transactions conducted from delivery vans, using tablets paired with Bluetooth printers.",
     tags: ["Java", "SQL Server", "SQLite"],
-    image: null,
+    image: img("/projects/van-sales/images/1.jpg"),
     images: [
       img("/projects/van-sales/images/1.jpg"),
       img("/projects/van-sales/images/2.jpg"),
@@ -123,7 +123,7 @@ const allProjects: Project[] = [
     description:
       "An enterprise-level ordering system featuring real-time inventory tracking, automated order processing, and a React Native mobile app with offline capabilities.",
     tags: ["React", "Node.js", "SQL Server"],
-    image: null,
+    image: img("/projects/mldi-order/images/1.png"),
     images: [
       img("/projects/mldi-order/images/1.png"),
       img("/projects/mldi-order/images/2.png"),
@@ -136,7 +136,7 @@ const allProjects: Project[] = [
     description:
       "A desktop application that efficiently tracks employee attendance, offering barcode ID or biometric verification for clocking in and out.",
     tags: ["C#", ".NET", "SQL Server"],
-    image: img("/projects/timekeeping/images/1.png"),
+    image: img("/projects/timekeeping-desktop/images/1.png"),
     images: [
       img("/projects/timekeeping-desktop/images/1.png"),
       img("/projects/timekeeping-desktop/images/2.png"),
@@ -158,7 +158,7 @@ const allProjects: Project[] = [
     description:
       "A desktop tool that converts .csv and .xml files from client portals or Iconnect for direct processing of purchase orders.",
     tags: ["C#", ".NET", "XML"],
-    image: null,
+    image: img("/projects/b2b/images/1.png"),
     images: [
       img("/projects/b2b/images/1.png"),
       img("/projects/b2b/images/2.png"),
