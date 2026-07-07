@@ -109,7 +109,13 @@ const allProjects: Project[] = [
       "A Sales Force Automation (SFA) app developed to facilitate paperless sales transactions conducted from delivery vans, using tablets paired with Bluetooth printers.",
     tags: ["Java", "SQL Server", "SQLite"],
     image: null,
-    images: [],
+    images: [
+      img("/projects/van-sales/images/1.jpg"),
+      img("/projects/van-sales/images/2.jpg"),
+      img("/projects/van-sales/images/3.jpg"),
+      img("/projects/van-sales/images/4.jpg"),
+      img("/projects/van-sales/images/4.jpg"),
+    ],
     link: "",
   },
   {
@@ -118,7 +124,11 @@ const allProjects: Project[] = [
       "An enterprise-level ordering system featuring real-time inventory tracking, automated order processing, and a React Native mobile app with offline capabilities.",
     tags: ["React", "Node.js", "SQL Server"],
     image: null,
-    images: [],
+    images: [
+      img("/projects/mldi-order/images/1.png"),
+      img("/projects/mldi-order/images/2.png"),
+      img("/projects/mldi-order/images/3.png"),
+    ],
     link: "",
   },
   {
@@ -128,9 +138,9 @@ const allProjects: Project[] = [
     tags: ["C#", ".NET", "SQL Server"],
     image: img("/projects/timekeeping/images/1.png"),
     images: [
-      img("/projects/timekeeping/images/1.png"),
-      img("/projects/timekeeping/images/2.png"),
-      img("/projects/timekeeping/images/3.png"),
+      img("/projects/timekeeping-desktop/images/1.png"),
+      img("/projects/timekeeping-desktop/images/2.png"),
+      img("/projects/timekeeping-desktop/images/3.png"),
     ],
     link: "",
   },
@@ -149,7 +159,10 @@ const allProjects: Project[] = [
       "A desktop tool that converts .csv and .xml files from client portals or Iconnect for direct processing of purchase orders.",
     tags: ["C#", ".NET", "XML"],
     image: null,
-    images: [],
+    images: [
+      img("/projects/b2b/images/1.png"),
+      img("/projects/b2b/images/2.png"),
+    ],
     link: "",
   },
 ];
